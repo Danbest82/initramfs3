@@ -4,14 +4,14 @@
 	<settingsPane description="The following settings are for all global CPU configuration, use it only if you know what you are doing." 
 			name="CPU Global Settings">
 
-		<seekBar description="Maximum CPU-Speed. ALERT! 1.4 GHz can be unstable for your personal device! Try it and if the phone stuck (SOD), then your CPU will not work on such high frequency and you have to use a lower value! CPU Frequency step by 50.000 kHz are valid from 100.000 kHz to 1.200.000 kHz! (Default: 1.200.000 kHz)" 
+		<seekBar description="Maximum CPU-Speed. ALERT! 1.4 GHz can be unstable for your personal device! Try it and if the phone stuck (SOD), then your CPU will not work on such high frequency and you have to use a lower value! CPU Frequency step by 50.000 kHz are valid from 100.000 kHz to 1.400.000 kHz! (Default: 1.200.000 kHz)" 
 			name="Max Frequency" action="genericfreq /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq" unit="kHz" min="100000" reversed="false" step="100000" max="1400000"/>
 
 		<seekBar description="Minimum CPU-Speed. CPU Frequency step by 50000KHz are valid from 100.000 kHz to 1.400.000 kHz! (Default: 200.000 kHz)" 
 			name="Min Frequency" action="genericfreq /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq" unit="kHz" min="100000" reversed="false" step="100000" max="1400000"/>
 
 		<seekBar description="Maximum CPU-Boost, when you touch the screen. This is also limited by above Max/Min CPU-Speed! (Default: 1.000.000 kHz)"
-			name="Max Touch-Frequency" action="genericfreq /sys/devices/virtual/sec/sec_touchscreen/tsp_touch_freq" unit="kHz" min="100000" reversed="false" step="50000" max="1000000"/>
+			name="Max Touch-Frequency" action="genericfreq /sys/devices/virtual/sec/sec_touchscreen/tsp_touch_freq" unit="kHz" min="100000" reversed="false" step="100000" max="1000000"/>
 
 		<seekBar description="Minimum Frequency until second core will not be turned on, regardless of thresholds. (Default: 600.000 kHz)" 
 			name="Min Frequency for 2-core" action="genericfreq /sys/module/stand_hotplug/parameters/freq_min" 
@@ -1065,9 +1065,7 @@
 
 		<button description="extreme_performance.profile" name="extreme_performance.profile" action="push-actions/config_backup_restore 7" label="EXTREME PERFORMANCE"/>
 
-                <button description="rav4kar_balanced.profile" name="rav4kar_balanced.profile" action="push-actions/config_backup_restore 8" label="rav4kar balanced profile"/>
-
-<button description="jthatch_default.profile" name="jthatch_default.profile" action="push-actions/config_backup_restore 9" label="jthatch default profile"/>
+		<button description="jthatch_default.profile" name="jthatch_default.profile" action="push-actions/config_backup_restore 9" label="jthatch default profile"/>
 
 	</settingsPane>
 
