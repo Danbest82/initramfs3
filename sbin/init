@@ -19,6 +19,7 @@ JBSAMMY=0;
 [ "`/sbin/busybox grep -i ro.build.PDA=I9100XWLSD /system/build.prop`" ] && JBSAMMY=1;
 [ "`/sbin/busybox grep -i ro.build.PDA=I9100ZCLSH /system/build.prop`" ] && JBSAMMY=1;
 [ "`/sbin/busybox grep -i ro.build.PDA=I9100ZCLSF /system/build.prop`" ] && JBSAMMY=1;
+[ "`/sbin/busybox grep -i ro.build.PDA=I9100XWLSE /system/build.prop`" ] && JBSAMMY=1;
 
 if [ "$JBSAMMY" == "1" ]; then
 
@@ -227,6 +228,8 @@ IS_CM101=0
 CM_AOKP_10_JB=0;
 $BB echo "0" > /tmp/jbsammy_installed;
 $BB chmod 666 /tmp/jbsammy_installed;
+XWLSE
+
 
 [ "`/sbin/busybox grep -i cMIUI /system/build.prop`" ] && MIUI_JB=1;
 [ "`/sbin/busybox grep -i android-htc-rev /system/build.prop`" ] && S4A=1;
@@ -240,6 +243,8 @@ $BB chmod 666 /tmp/jbsammy_installed;
 [ "`/sbin/busybox grep -i ro.build.PDA=I777XZCLSH /system/build.prop`" ] && JBSAMMY=1;
 [ "`/sbin/busybox grep -i ro.build.PDA=I9100ZCLSF /system/build.prop`" ] && JBSAMMY=1;
 [ "`/sbin/busybox grep -i ro.build.PDA=I777ZCLSF /system/build.prop`" ] && JBSAMMY=1;
+[ "`/sbin/busybox grep -i ro.build.PDA=I9100XWLSE /system/build.prop`" ] && JBSAMMY=1;
+[ "`/sbin/busybox grep -i ro.build.PDA=I777XWLSE /system/build.prop`" ] && JBSAMMY=1;
 [ "`/sbin/busybox grep -i ro.build.host=cyanogenmod /system/build.prop`" ] && IS_CM101=1;
 B2G=`$BB ls /system/b2g | wc -l`;
 JELLY=`$BB ls /system/lib/ssl/engines/libkeystore.so | wc -l`;

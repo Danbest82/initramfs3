@@ -11,7 +11,7 @@
 			name="Min Frequency" action="genericfreq /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq" unit="kHz" min="100000" reversed="false" step="100000" max="1400000"/>
 
 		<seekBar description="Maximum CPU-Boost, when you touch the screen. This is also limited by above Max/Min CPU-Speed! (Default: 1.000.000 kHz)"
-			name="Max Touch-Frequency" action="genericfreq /sys/devices/virtual/sec/sec_touchscreen/tsp_touch_freq" unit="kHz" min="100000" reversed="false" step="100000" max="1000000"/>
+			name="Max Touch-Frequency" action="genericfreq /sys/devices/virtual/sec/sec_touchscreen/tsp_touch_freq" unit="kHz" min="100000" reversed="false" step="50000" max="1000000"/>
 
 		<seekBar description="Minimum Frequency until second core will not be turned on, regardless of thresholds. (Default: 600.000 kHz)" 
 			name="Min Frequency for 2-core" action="genericfreq /sys/module/stand_hotplug/parameters/freq_min" 
@@ -123,7 +123,7 @@
 
 <settingsTab name="CPU-VOLTAGE">
 
-	<settingsPane description="CPU Voltage Controls. Frequencies above 1200MHz are not allowed to be modified via STweaks. Voltage Range is 850~1350mV. Lower/higher is NOT SUPPORTED. All is done to prevent BUGS and SODS. USE this interface AT YOUR OWN RISK! If you get SOD before you can load this interface and can't fix your error, reset profiles from recovery. And think harder before you SOD your CPU with too much UV!" name="CPU Voltage Controls">
+	<settingsPane description="CPU Voltage Controls. Frequencies above 1400MHz are not allowed to be modified via STweaks. Voltage Range is 850~1350mV. Lower/higher is NOT SUPPORTED. All is done to prevent BUGS and SODS. USE this interface AT YOUR OWN RISK! If you get SOD before you can load this interface and can't fix your error, reset profiles from recovery. And think harder before you SOD your CPU with too much UV!" name="CPU Voltage Controls">
 
 		<checkbox description="Main switch for Voltage Control! If disabled, all below settings have no effect! If you are using an external application or script to configure CPU voltage, don't tick this checkbox. Don't start to mod voltage before you enable this switch! It will not make any effect and you will have to set all to default, and tune again!" 
 			name="CPU Voltage Main Switch" action="generic_cortex /tmp/cpu_voltage_switch" label="CPU Voltage Main Switch"/>
@@ -131,43 +131,46 @@
 		<button description="Use this button to see what CPU Voltage is used right now!" name="Check Active CPU Voltage" action="push-actions/check_cpu_voltage" label="Check CPU Voltage"/>
 
 		<seekBar description="CPU Voltage for 1400 MHz. (Default: 1375 mV)"
-			name="CPU Voltage 1400 MHz" action="cpu-voltage 3" unit="mV" min="1275" reversed="false" step="25" max="1500"/>
+			name="CPU Voltage 1400 MHz" action="cpu-voltage 1" unit="mV" min="1225" reversed="false" step="25" max="1400"/>
+			
+		<seekBar description="CPU Voltage for 1300 MHz. (Default: 1350 mV)"
+			name="CPU Voltage 1300 MHz" action="cpu-voltage 2" unit="mV" min="1200" reversed="false" step="25" max="1375"/>
 
 		<seekBar description="CPU Voltage for 1200 MHz. (Default: 1300 mV)"
-			name="CPU Voltage 1200 MHz" action="cpu-voltage 5" unit="mV" min="1225" reversed="false" step="25" max="1350"/>
+			name="CPU Voltage 1200 MHz" action="cpu-voltage 3" unit="mV" min="1175" reversed="false" step="25" max="1350"/>
 
 		<seekBar description="CPU Voltage for 1100 MHz. (Default: 1250 mV)"
-			name="CPU Voltage 1100 MHz" action="cpu-voltage 7" unit="mV" min="1175" reversed="false" step="25" max="1300"/>
+			name="CPU Voltage 1100 MHz" action="cpu-voltage 4" unit="mV" min="1125" reversed="false" step="25" max="1325"/>
 
 		<seekBar description="CPU Voltage for 1000 MHz. (Default: 1200 mV)"
-			name="CPU Voltage 1000 MHz" action="cpu-voltage 9" unit="mV" min="1125" reversed="false" step="25" max="1250"/>
+			name="CPU Voltage 1000 MHz" action="cpu-voltage 5" unit="mV" min="1075" reversed="false" step="25" max="1300"/>
 
-		<seekBar description="CPU Voltage for 900 MHz. (Default: 1125 mV)"
-			name="CPU Voltage 900 MHz" action="cpu-voltage 11" unit="mV" min="1050" reversed="false" step="25" max="1175"/>
+		<seekBar description="CPU Voltage for 900 MHz. (Default: 1150 mV)"
+			name="CPU Voltage 900 MHz" action="cpu-voltage 6" unit="mV" min="1025" reversed="false" step="25" max="1250"/>
 
 		<seekBar description="CPU Voltage for 800 MHz. (Default: 1075 mV)"
-			name="CPU Voltage 800 MHz" action="cpu-voltage 13" unit="mV" min="1000" reversed="false" step="25" max="1125"/>
+			name="CPU Voltage 800 MHz" action="cpu-voltage 7" unit="mV" min="975" reversed="false" step="25" max="1200"/>
 			
-		<seekBar description="CPU Voltage for 700 MHz. (Default: 1025 mV)"
-			name="CPU Voltage 700MHz" action="cpu-voltage 15" unit="mV" min="950" reversed="false" step="25" max="1075"/>
+		<seekBar description="CPU Voltage for 700 MHz. (Default: 1075 mV)"
+			name="CPU Voltage 700MHz" action="cpu-voltage 8" unit="mV" min="950" reversed="false" step="25" max="1150"/>
 			
-		<seekBar description="CPU Voltage for 600 MHz. (Default: 1000 mV)"
-			name="CPU Voltage 600 MHz" action="cpu-voltage 17" unit="mV" min="925" reversed="false" step="25" max="1050"/>
+		<seekBar description="CPU Voltage for 600 MHz. (Default: 1025 mV)"
+			name="CPU Voltage 600 MHz" action="cpu-voltage 9" unit="mV" min="950" reversed="false" step="25" max="1125"/>
 
-		<seekBar description="CPU Voltage for 500 MHz. (Default: 975 mV)"
-			name="CPU Voltage 500 MHz" action="cpu-voltage 19" unit="mV" min="900" reversed="false" step="25" max="1025"/>
+		<seekBar description="CPU Voltage for 500 MHz. (Default: 1000 mV)"
+			name="CPU Voltage 500 MHz" action="cpu-voltage 10" unit="mV" min="925" reversed="false" step="25" max="1100"/>
 
-		<seekBar description="CPU Voltage for 400 MHz. (Default: 975 mV)"
-			name="CPU Voltage 400 MHz" action="cpu-voltage 21" unit="mV" min="900" reversed="false" step="25" max="1025"/>
+		<seekBar description="CPU Voltage for 400 MHz. (Default: 1000 mV)"
+			name="CPU Voltage 400 MHz" action="cpu-voltage 11" unit="mV" min="925" reversed="false" step="25" max="1075"/>
 
-		<seekBar description="CPU Voltage for 300 MHz. (Default: 975 mV)"
-			name="CPU Voltage 300 MHz" action="cpu-voltage 23" unit="mV" min="900" reversed="false" step="25" max="1025"/>
+		<seekBar description="CPU Voltage for 300 MHz. (Default: 1000 mV)"
+			name="CPU Voltage 300 MHz" action="cpu-voltage 12" unit="mV" min="925" reversed="false" step="25" max="1075"/>
 
-		<seekBar description="CPU Voltage for 200 MHz. (Default: 950 mV)"
-			name="CPU Voltage 200 MHz" action="cpu-voltage 25" unit="mV" min="875" reversed="false" step="25" max="1000"/>
+		<seekBar description="CPU Voltage for 200 MHz. (Default: 975 mV)"
+			name="CPU Voltage 200 MHz" action="cpu-voltage 13" unit="mV" min="925" reversed="false" step="25" max="1050"/>
 
-		<seekBar description="CPU Voltage for 100 MHz. (Default: 925 mV)"
-			name="CPU Voltage 100 MHz" action="cpu-voltage 27" unit="mV" min="850" reversed="false" step="25" max="975"/>
+		<seekBar description="CPU Voltage for 100 MHz. (Default: 950 mV)"
+			name="CPU Voltage 100 MHz" action="cpu-voltage 14" unit="mV" min="900" reversed="false" step="25" max="1025"/>
 
 	</settingsPane>
 
@@ -423,7 +426,7 @@
 			<spinnerItem name="4096 kb" value="4096"/> 
 		</spinner>
 
-		<spinner description="This will set the default AWAKE I/O scheduler for internal, system, data and external sdcard. (Default: ZEN)"
+		<spinner description="This will set the default AWAKE I/O scheduler for internal, system, data and external sdcard. (Default: ROW)"
 			name="Default Awake I/O Scheduler" action="generic /sys/block/mmcblk0/queue/scheduler">
 			<spinnerItem name="BFQ" value="bfq"/> 
 			<spinnerItem name="CFQ" value="cfq"/> 
@@ -433,9 +436,11 @@
 			<spinnerItem name="SIO" value="sio"/> 
 			<spinnerItem name="VR" value="vr"/> 
 			<spinnerItem name="ZEN" value="zen"/> 
+			<spinnerItem name="FIFO" value="fifo"/> 
+
 		</spinner>
 
-		<spinner description="This will set the STANDBY/DEEPSLEEP I/O scheduler for internal, system, data and external sdcard. (Default: NOOP)"
+		<spinner description="This will set the STANDBY/DEEPSLEEP I/O scheduler for internal, system, data and external sdcard. (Default: FIFO)"
 			name="STANDBY/DEEPSLEEP I/O Scheduler" action="generic /sys/block/mmcblk0/queue/sleep_scheduler">
 			<spinnerItem name="BFQ" value="bfq"/> 
 			<spinnerItem name="CFQ" value="cfq"/> 
@@ -444,7 +449,8 @@
 			<spinnerItem name="ROW" value="row"/> 
 			<spinnerItem name="SIO" value="sio"/> 
 			<spinnerItem name="VR" value="vr"/> 
-			<spinnerItem name="ZEN" value="zen"/> 
+			<spinnerItem name="ZEN" value="zen"/>
+			<spinnerItem name="FIFO" value="fifo"/> 
 		</spinner>
 
 	</settingsPane>
@@ -745,7 +751,7 @@
 			name="Analog headphone gain" action="sound_volume 4" unit="dB" min="-6" reversed="false" step="1" max="6"/>
 
 		<seekBar description="Analog Mic gain level"
-			name="Mic gain Level" action="sound_volume 2" unit="dB" min="-12" reversed="false" step="4" max="12"/>
+			name="Mic gain Level" action="sound_volume 2" unit="dB" min="-12" reversed="false" step="2" max="12"/>
 
 		<seekBar description="Analog speaker level"
 			name="Speaker level" action="sound_volume 3" unit="dB" min="-12" reversed="false" step="4" max="12"/>
@@ -761,7 +767,7 @@
 		<checkbox description="BackLightNotification" 
 			name="BLN" action="generic /sys/class/misc/notification/notification_enabled" label="BLN"/>
 
-		<spinner description="This setting will set led behavior for BLN." 
+		<spinner description="This setting will set led behavior for BLN.(ONLY STEADY IS ALLOWED)" 
 			name="BLN Effect" action="bln_switch">
 			<spinnerItem name="Steady" value="0"/>
 		</spinner>
@@ -787,7 +793,8 @@
 			name="led_timeout" action="generic /sys/class/misc/notification/led_timeout_ms">
 			<spinnerItem name="Use ROM defaults (disabled)" value="-1"/> 
 			<spinnerItem name="No timeout" value="0"/> 
-			<spinnerItem name="1 sec" value="1000"/> 
+			<spinnerItem name="1 sec" value="1000"/>
+			<spinnerItem name="1.5 sec" value="1500"/> 
 			<spinnerItem name="3 sec" value="3000"/> 
 			<spinnerItem name="6 sec" value="6000"/> 
 			<spinnerItem name="15 sec" value="15000"/> 
@@ -818,6 +825,27 @@
 </settingsTab>
 
 <settingsTab name="Other">
+  
+  <settingsPane description="Charger/Battery settings/options." name="Battery">
+
+		<seekBar description="Battery AC Charge Current Setting" 
+			name="Battery AC Charge Current" action="chargecurrent 1" 
+                        unit="mA" min="450" reversed="false" step="50" max="750"/>
+
+		<seekBar description="Battery MISC Charge Current Setting" 
+			name="Battery MISC Charge Current" action="chargecurrent 2" 
+			unit="mA" min="450" reversed="false" step="50" max="750"/>
+
+		<seekBar description="Battery USB Charge Current Setting" 
+			name="Battery USB Charge Current" action="chargecurrent 3" 
+			unit="mA" min="450" reversed="false" step="50" max="750"/>
+
+		<button description="If you think that the fuel gauge chip is behaving weird use this button to reset it. Give it a few hours after you reset the gauge. It may still show you funny values for that period, then the battery percentage should be fine." name="Reset Fuel-Gauge Chip" action="push-actions/reset-fuelgauge" label="Reset Fuel-Gauge Chip"/>
+
+		<checkbox description="If checked, BetterBatteryStatus will report discrete (non-overlapping) wake lock statistics." 
+			name="Discrete Wake lock Stats" action="generic01 /sys/module/wakelock/parameters/default_stats" label="Discrete Wake lock Stats"/> 
+
+	</settingsPane>
 
 	<settingsPane description="Here you can activate some script, which will automatically run in the background, at a specified time." name="cron">
 
@@ -870,7 +898,8 @@
 			<spinnerItem name="Set WIFI SCAN 120Sec" value="120"/> 
 			<spinnerItem name="Set WIFI SCAN 180Sec" value="180"/> 
 			<spinnerItem name="Set WIFI SCAN 240Sec" value="240"/> 
-			<spinnerItem name="Set WIFI SCAN 360Sec" value="360"/> 
+			<spinnerItem name="Set WIFI SCAN 360Sec" value="360"/>
+			<spinnerItem name="Set WIFI SCAN 360Sec" value="480"/> 
 		</spinner>
 
 		<button description="Clean WIFI DHCP IP Lease. Push the button to activate!" name="Clean WIFI Lease" action="push-actions/fix_wifi" label="Clean WIFI Lease"/>
@@ -910,27 +939,6 @@
 			name="Auto Mount USB Drives" action="generic_cortex /tmp/auto_mount_sd" label="Auto Mount USB Drives"/>
 
 		<button description="Dual Mount-SDCARD and MMC via USB. After USB is disconnected, Dual Mount is disabled! This tweak is working automatically. Plug USB, turn off the screen and then turn ON, and you get working mounts. To scan your new MEDIA files, use some app to force Media Scan." name="DUAL MOUNT" action="push-actions/dualmount" label="Dual Mount"/>
-
-	</settingsPane>
-
-	<settingsPane description="Charger/Battery settings/options." name="Battery">
-
-		<seekBar description="Battery AC Charge Current Setting" 
-			name="Battery AC Charge Current" action="chargecurrent 1" 
-                        unit="mA" min="450" reversed="false" step="50" max="750"/>
-
-		<seekBar description="Battery MISC Charge Current Setting" 
-			name="Battery MISC Charge Current" action="chargecurrent 2" 
-			unit="mA" min="450" reversed="false" step="50" max="750"/>
-
-		<seekBar description="Battery USB Charge Current Setting" 
-			name="Battery USB Charge Current" action="chargecurrent 3" 
-			unit="mA" min="450" reversed="false" step="50" max="750"/>
-
-		<button description="If you think that the fuel gauge chip is behaving weird use this button to reset it. Give it a few hours after you reset the gauge. It may still show you funny values for that period, then the battery percentage should be fine." name="Reset Fuel-Gauge Chip" action="push-actions/reset-fuelgauge" label="Reset Fuel-Gauge Chip"/>
-
-		<checkbox description="If checked, BetterBatteryStatus will report discrete (non-overlapping) wake lock statistics." 
-			name="Discrete Wake lock Stats" action="generic01 /sys/module/wakelock/parameters/default_stats" label="Discrete Wake lock Stats"/> 
 
 	</settingsPane>
 
