@@ -1,4 +1,4 @@
-scaling_max_freq=1000000
+scaling_max_freq=900000
 scaling_min_freq=200000
 smooth_level0=24
 scaling_governor=conservative
@@ -16,7 +16,7 @@ sched_mc_power_savings=0
 busfreq_up_threshold=80
 scaling_max_suspend_freq=600000
 scaling_min_suspend_freq=200000
-deep_sleep=conservative
+deep_sleep=skywalker
 standby_freq=400000
 wakeup_delay=0
 wakeup_boost=4

@@ -1,7 +1,7 @@
-scaling_max_freq=1500000
+scaling_max_freq=1400000
 scaling_min_freq=500000
 smooth_level0=4
-scaling_governor=HYPER
+scaling_governor=performance
 load_l1=20
 load_h0=20
 min_rq=2

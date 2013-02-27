@@ -1,4 +1,4 @@
-scaling_max_freq=1500000
+scaling_max_freq=1400000
 scaling_min_freq=500000
 smooth_level0=24
 scaling_governor=HYPER

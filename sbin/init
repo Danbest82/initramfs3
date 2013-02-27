@@ -245,6 +245,8 @@ XWLSE
 [ "`/sbin/busybox grep -i ro.build.PDA=I777ZCLSF /system/build.prop`" ] && JBSAMMY=1;
 [ "`/sbin/busybox grep -i ro.build.PDA=I9100XWLSE /system/build.prop`" ] && JBSAMMY=1;
 [ "`/sbin/busybox grep -i ro.build.PDA=I777XWLSE /system/build.prop`" ] && JBSAMMY=1;
+#New change for AOSP
+[ "`/sbin/busybox grep -i ro.build.id=JDQ39 /system/build.prop`" ] && IS_CM101=1;
 [ "`/sbin/busybox grep -i ro.build.host=cyanogenmod /system/build.prop`" ] && IS_CM101=1;
 B2G=`$BB ls /system/b2g | wc -l`;
 JELLY=`$BB ls /system/lib/ssl/engines/libkeystore.so | wc -l`;
