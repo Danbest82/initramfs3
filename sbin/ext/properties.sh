@@ -3,12 +3,13 @@
 mkdir -p /customkernel/property
 echo true >> /customkernel/property/customkernel.cf-root
 echo true >> /customkernel/property/customkernel.base.cf-root
-echo AJ >> /customkernel/property/customkernel.name
-echo "Siyah-i777 Kernel" >> /customkernel/property/customkernel.namedisplay
+echo JT >> /customkernel/property/customkernel.name
+echo "STi Kernel" >> /customkernel/property/customkernel.namedisplay
 echo 104 >> /customkernel/property/customkernel.version.number
 echo 5.2 >> /customkernel/property/customkernel.version.name
 echo true >> /customkernel/property/customkernel.bootani.zip
 echo true >> /customkernel/property/customkernel.bootani.bin
 echo true >> /customkernel/property/customkernel.cwm
 echo 5.0.2.7 >> /customkernel/property/customkernel.cwm.version
++chmod 777 -R /customkernel/
 
