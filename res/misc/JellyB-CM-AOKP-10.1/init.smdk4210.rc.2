@@ -1,6 +1,7 @@
 import init.smdk4210.usb.rc
 
-on early-init
+on init
+    insmod /lib/modules/ffu.ko
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
     mkdir /storage 0775 system system
@@ -23,35 +24,22 @@ on early-init
 # Disable CFQ slice idle delay
     write /sys/block/mmcblk0/queue/iosched/slice_idle 0
 
-# FIXME: permissions for tvout
-    chmod 0777 /dev/graphics/fb0
-    chmod 0777 /dev/graphics/fb10
-    chmod 0777 /dev/graphics/fb11
-    chown media graphics /sys/class/switch/hdmi
-    chmod 0777 /sys/class/switch/hdmi
-
-# FIXME: permission for HDMI audio path
-    chown media audio /sys/class/hdmi_audio/hdmi_audio/hdmi_audio_set_ext
-    chmod 0777 /sys/class/hdmi_audio/hdmi_audio/hdmi_audio_set_ext
-
 on fs
-# mount ext4 partitions
-    mount ext4 /res/dev/system /system noatime wait
 # verify filesystem (UMS)
     exec sformat /dev/block/mmcblk0p11 vfat
 
 # make sure sdcard is mounted because we may have our data and cache partitions on it
     mount vfat /dev/block/mmcblk0p11 /mnt/.secondrom wait utf8
 
-# Check and mount /cache
+# check all
     exec sfsck /res/dev/cache ext4
-    mount ext4 loop@/res/dev/cache /cache nosuid nodev noatime wait rw
-
-# Check and mount /data
+    exec sfsck /dev/block/mmcblk0p1 ext4
     exec sfsck /res/dev/data ext4
-    mount ext4 loop@/res/dev/data /data nosuid nodev noatime wait noauto_da_alloc
-    mount ext4 /dev/block/mmcblk0p12 /preload nosuid nodev noatime wait
+
+# mount partitions.
+    mount ext4 loop@/res/dev/cache /cache nosuid nodev noatime journal_async_commit wait
     mount ext4 /dev/block/mmcblk0p1 /efs nosuid nodev noatime wait
+    mount ext4 loop@/res/dev/data /data nosuid nodev noatime wait
 
     mkdir /efs/bluetooth
     mkdir /efs/wifi
@@ -62,9 +50,10 @@ on fs
 
     mkdir /data/misc/vpn/profiles 0770 system system
     mkdir /data/misc/radio 0775 radio system
-    chmod 0774 /data/misc/wifi
+    chmod 0770 /data/misc/wifi
 
 on post-fs-data
+
 # MDNS
     socket mdns stream 0660 root system
 
@@ -80,8 +69,8 @@ on post-fs-data
 
 # give system access to wpa_supplicant.conf for backup and restore
     mkdir /data/misc/wifi 0774 wifi wifi
-    chmod 0774 /data/misc/wifi
-    chmod 0664 /data/misc/wifi/wpa_supplicant.conf
+    chmod 0770 /data/misc/wifi
+    chmod 0660 /data/misc/wifi/wpa_supplicant.conf
     mkdir /data/misc/wifi/sockets 0774 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
@@ -329,35 +318,44 @@ on boot
     setprop status.battery.level_raw  50
     setprop status.battery.level_scale 9
 
+# For RIL
+service cpboot-daemon /sbin/cbd -d -p 8
+    class main
+    user root
+    group radio cache inet misc audio sdcard_rw log sdcard_r
+
 service mdnsd /system/bin/mdnsd
-	class main
-        user mdnsr
-        group inet net_raw
-        socket mdnsd stream 0660 mdnsr inet
-        disabled
-        oneshot
+    class main
+    user mdnsr
+    group inet net_raw
+    socket mdnsd stream 0660 mdnsr inet
+    disabled
+    oneshot
 
 service p2p_supplicant /system/bin/wpa_supplicant \
-    -Dnl80211 -iwlan0 -puse_p2p_group_interface=1 -c/data/misc/wifi/wpa_supplicant.conf -e/data/misc/wifi/entropy.bin 
+        -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -N \
+        -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -e/data/misc/wifi/entropy.bin \
+        -puse_p2p_group_interface=1
 # we will start as root and wpa_supplicant will switch to user wifi
 # after setting up the capabilities required for WEXT
 # user wifi
 # group wifi inet keystore
     class main
-    socket wpa_wlan0 dgram 0660 wifi wifi
+    socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
 
 service wpa_supplicant /system/bin/wpa_supplicant \
-	-Dnl80211 -iwlan0 -puse_p2p_group_interface=1 -c/data/misc/wifi/wpa_supplicant.conf -e/data/misc/wifi/entropy.bin
-#       we will start as root and wpa_supplicant will switch to user wifi
-#       after setting up the capabilities required for WEXT
-#       user wifi
-#       group wifi inet keystore
-	class main
-	socket wpa_wlan0 dgram 0660 wifi wifi
-	disabled
-	oneshot
+        -Dnl80211 -iwlan0 -e/data/misc/wifi/entropy.bin \
+        -c/data/misc/wifi/wpa_supplicant.conf
+# we will start as root and wpa_supplicant will switch to user wifi
+# after setting up the capabilities required for WEXT
+# user wifi
+# group wifi inet keystore
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
 
 service dhcpcd_wlan0 /system/bin/dhcpcd -ABKL
     class main
@@ -369,12 +367,22 @@ service dhcpcd_p2p /system/bin/dhcpcd -aABKL
     disabled
     oneshot
 
+service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
+
 service iprenew_wlan0 /system/bin/dhcpcd -n
     class main
     disabled
     oneshot
 
 service iprenew_p2p /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service iprenew_bnep0 /system/bin/dhcpcd -n
     class main
     disabled
     oneshot
