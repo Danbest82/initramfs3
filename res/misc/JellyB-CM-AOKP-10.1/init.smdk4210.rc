@@ -1,7 +1,6 @@
 import init.smdk4210.usb.rc
 
 on early-init
-   insmod /lib/modules/ffu.ko
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
     mkdir /storage 0775 system system
@@ -322,6 +321,13 @@ on boot
     setprop status.battery.level 5
     setprop status.battery.level_raw  50
     setprop status.battery.level_scale 9
+
+# For RIL
+service cpboot-daemon /sbin/cbd -d -p 8
+    class main
+    user root
+    group radio cache inet misc audio sdcard_rw log sdcard_r
+
 
 service mdnsd /system/bin/mdnsd
 	class main
