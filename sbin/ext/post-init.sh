@@ -30,7 +30,7 @@ fi;
 [ ! -f /data/.siyah/performance.profile ] && cp -a /res/customconfig/performance.profile /data/.siyah/performance.profile;
 [ ! -f /data/.siyah/extreme_performance.profile ] && cp -a /res/customconfig/extreme_performance.profile /data/.siyah/extreme_performance.profile;
 [ ! -f /data/.siyah/extreme_battery.profile ] && cp -a /res/customconfig/extreme_battery.profile /data/.siyah/extreme_battery.profile;
-[ ! -f /data/.siyah/rav4kar_default.profile ] && cp -a /res/customconfig/rav4kar_default.profile /data/.siyah/rav4kar_default.profile;
+[ ! -f /data/.siyah/jthatch_battery.profile ] && cp -a /res/customconfig/jthatch_battery.profile /data/.siyah/jhatch_battery.profile;
 
 $BB chmod -R 0777 /data/.siyah/;
 

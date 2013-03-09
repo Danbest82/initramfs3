@@ -37,8 +37,8 @@ case "${config_backup_restore}" in
 		config_backup_restore=2;
         ;;
 	8)
-		file2="/res/customconfig/rav4kar_default.profile";
-		echo "rav4kar_default" > /data/.siyah/.active.profile;
+		file2="/res/customconfig/jthatch_battery.profile";
+		echo "jthatch_battery" > /data/.siyah/.active.profile;
 		config_backup_restore=2;
 	;;
 	9)

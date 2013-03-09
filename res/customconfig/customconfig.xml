@@ -83,7 +83,7 @@
 		</spinner>
 
 		<spinner description="Sets the CPU Idle Mode (Sleep Mode). For best stability use Idle + LPA. (Default: AFTR only)" 
-			name="CPU Idle Mode (Sleep Mode)" action="generic /tmp/enable_mask_sleep">
+			name="CPU Idle Mode (Sleep Mode)" action="generic_cortex /tmp/enable_mask_sleep">
 			<spinnerItem name="AFTR + LPA" value="3"/> 
 			<spinnerItem name="Idle + LPA" value="2"/> 
 			<spinnerItem name="AFTR only" value="1"/> 
@@ -675,15 +675,6 @@
 		<checkbox description="Slide2Wake By Fluxi@xda. When screen is turned off, swipe from the left side of the screen to the right side of the screen, and the screen will be turned on!"
 			name="Slide2Wake ON/OFF switch" action="generic01 /sys/devices/virtual/sec/sec_touchscreen/tsp_slide2wake" label="Slide2Wake Switch"/>
 
-		<checkbox description="Enable inverting screen colors by quickly pressing Home button." 
-			name="mDNIe Negative Toggle" action="generic01 /sys/module/gpio_keys/parameters/mdnie_shortcut_enabled" label="mDNIe Negative Toggle"/>
-
-		<spinner description="Negative Color. Screen effect settings. Fast clicking Home button for the number of times configured will activate MOD" 
-			name="Negative Screen Mod tuning." action="negative_tweak">
-			<spinnerItem name="Set 4 clicks (default)" value="1"/> 
-			<spinnerItem name="Set 6 clicks" value="2"/> 
-		</spinner>
-
 	</settingsPane>
 
 	<settingsPane description="Here you can control kernel screen gestures, set at /data/gesture_set.sh. More can be added by user. This tweak depends on cortex background service to be enabled" 
@@ -904,7 +895,8 @@
 			<spinnerItem name="Set WIFI SCAN 180Sec" value="180"/> 
 			<spinnerItem name="Set WIFI SCAN 240Sec" value="240"/> 
 			<spinnerItem name="Set WIFI SCAN 360Sec" value="360"/>
-			<spinnerItem name="Set WIFI SCAN 360Sec" value="480"/> 
+			<spinnerItem name="Set WIFI SCAN 480Sec" value="480"/> 
+			<spinnerItem name="Set WIFI SCAN 540Sec" value="540"/> 
 		</spinner>
 
 		<button description="Clean WIFI DHCP IP Lease. Push the button to activate!" name="Clean WIFI Lease" action="push-actions/fix_wifi" label="Clean WIFI Lease"/>
@@ -1084,8 +1076,10 @@
 		<button description="performance.profile" name="performance.profile" action="push-actions/config_backup_restore 5" label="PERFORMANCE"/>
 
 		<button description="extreme_performance.profile" name="extreme_performance.profile" action="push-actions/config_backup_restore 7" label="EXTREME PERFORMANCE"/>
+		
+		<button description="jthatch_battery.profile" name="jthatch_battery.profile" action="push-actions/config_backup_restore 8" label="JTHATCH BATTERY PROFILE"/>
 
-		<button description="jthatch_default.profile" name="jthatch_default.profile" action="push-actions/config_backup_restore 9" label="jthatch default profile"/>
+		<button description="jthatch_default.profile" name="jthatch_default.profile" action="push-actions/config_backup_restore 9" label="JTHATCH DEFAULT PROFILE"/>
 
 	</settingsPane>
 
