@@ -442,6 +442,7 @@
 			<spinnerItem name="VR" value="vr"/> 
 			<spinnerItem name="ZEN" value="zen"/> 
 			<spinnerItem name="FIFO" value="fifo"/> 
+			<spinnerItem name="LIFO" value="lifo"/>
 
 		</spinner>
 
@@ -456,6 +457,7 @@
 			<spinnerItem name="VR" value="vr"/> 
 			<spinnerItem name="ZEN" value="zen"/>
 			<spinnerItem name="FIFO" value="fifo"/> 
+			<spinnerItem name="LIFO" value="lifo"/>
 		</spinner>
 
 	</settingsPane>
