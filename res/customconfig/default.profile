@@ -1,5 +1,5 @@
 scaling_max_freq=1200000
-scaling_min_freq=500000
+scaling_min_freq=200000
 smooth_level0=24
 scaling_governor=Wrexy
 load_l1=20
