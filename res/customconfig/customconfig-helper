@@ -6,6 +6,7 @@ BATTERY_PROFILE="/res/customconfig/battery.profile";
 PERFORMANCE_PROFILE="/res/customconfig/performance.profile";
 JTHATCH_PROFILE="/res/customconfig/jthatch_default.profile";
 JTHATCH_BATTERY_PROFILE="/res/customconfig/jthatch_battery.profile";
+JTHATCH_HYBRID_PROFILE="/res/customconfig/jthatch_hybrid.profile";
 CONFIG_XML="/res/customconfig/customconfig.xml";
 PROFILE_PATH="/data/.siyah";
 TEMP_CONFIG="${PROFILE_PATH}/.config.tmp";
@@ -149,6 +150,11 @@ fi;
 if [ ! -f $PROFILE_PATH/jthatch_battery.profile ]; then
 	cp -a $JTHATCH_BATTERY_PROFILE $PROFILE_PATH/jthatch_battery.profile;
 	chmod 777 $PROFILE_PATH/jthatch_battery.profile;
+fi;
+
+if [ ! -f $PROFILE_PATH/jthatch_hyrbid.profile ]; then
+	cp -a $JTHATCH_HYBRID_PROFILE $PROFILE_PATH/jthatch_hybrid.profile;
+	chmod 777 $PROFILE_PATH/jthatch_hybrid.profile;
 fi;
 
 

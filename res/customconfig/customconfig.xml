@@ -1083,6 +1083,8 @@
 
 		<button description="jthatch_default.profile" name="jthatch_default.profile" action="push-actions/config_backup_restore 9" label="JTHATCH DEFAULT PROFILE"/>
 		
+		<button description="jthatch_hybrid.profile" name="jthatch_hybrid.profile" action="push-actions/config_backup_restore 10" label="JTHATCH HYBRID PROFILE"/>
+		
 		<button description="This displays your currently used profile." name="Profile Check" action="push-actions/profile" label="Profile Check"/>
 
 	</settingsPane>
@@ -1113,7 +1115,7 @@
 
 		<checkbox description="Check this if you don't want boot logo to be shown. If this options is checked boot logo will not be shown even if you have 2ndROM installed." name="No boot-logo" action="no-boot-logo" label="No boot-logo"/>
 		
-		<checkbox description="Check this if you want a custom boot logo to be shown.  File must be named icon_clockwork.png and stored in root of external SD card." name="Custom boot-logo" action="custom-boot-logo" label="Custom boot-logo"/>
+		<checkbox description="Check this if you want a custom boot logo to be shown.  File must be named icon_clockwork.png and stored in root of external SD card.(not yet fully implemented)" name="Custom boot-logo" action="custom-boot-logo" label="Custom boot-logo"/>
 
 		<spinner description="Default ROM to boot into. If you don't have 2nd ROM installed, 1st ROM will be booted. If you press the home or volume-down buttons during the boot logo the alternative ROM will be booted, i.e. 1st ROM will be booted if the default ROM selection is the 2nd ROM." 
 			name="Default ROM" action="defaultrom">

@@ -46,6 +46,11 @@ case "${config_backup_restore}" in
 		echo "jthatch_default" > /data/.siyah/.active.profile;
 		config_backup_restore=2;
 	;;
+	10)
+		file2="/res/customconfig/jthatch_hybrid.profile";
+		echo "jthatch_hybrid" > /data/.siyah/.active.profile;
+		config_backup_restore=2;
+	;;
 	*)
 		PROFILE=`cat /data/.siyah/.active.profile`;
 		file2="/data/.siyah/$PROFILE.profile_backup";
