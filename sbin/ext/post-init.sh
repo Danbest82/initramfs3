@@ -59,7 +59,7 @@ fi;
 # create init.d folder if missing
 if [ ! -d /system/etc/init.d ]; then
 	mkdir /system/etc/init.d/
-	$BB chmod -R 755 /system/etc/init.d/;
+	$BB chmod 755 /system/etc/init.d/;
 fi;
 
 (
@@ -105,6 +105,8 @@ $BB chmod -R 755 /lib;
 	$BB insmod /lib/modules/usbnet.ko;
 	$BB insmod /lib/modules/asix.ko;
 	$BB insmod /lib/modules/cifs.ko;
+	$BB insmod /lib/modules/mc1n2_voodoo.ko;
+
 )&
 
 # disable cpuidle log
